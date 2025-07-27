@@ -1,0 +1,15 @@
+.home{
+  height: calc(100vh - 350px);
+
+}
+.home_image{
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}

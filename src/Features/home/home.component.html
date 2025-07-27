@@ -1,1 +1,16 @@
-<p>home works!</p>
+<section class="container">
+  <div class="row home">
+    <div class="col-6 align-self-center">
+      <h1>مرحبا بكم. اسمي {{ profile?.name }}</h1>
+      <h2>أنا {{ profile?.title }}</h2>
+      <p>{{ profile?.bio }}</p>
+      <a class="btn btn-primary ms-4 mt-3" href="../../assets/docs/HossamMostafaIbrahim-Resume.pdf" target="_blank" role="button"><i class="bi bi-file-earmark-arrow-down"></i> تحميل السيرة الذاتية</a>
+      <a class="btn btn-secondary ms-4 mt-3" href="{{ profile?.gitHubUrl }}" target="_blank" role="button"><i class="bi bi-github"></i> رابط الجيت هب</a>
+    </div>
+    <div class="col-6 align-self-center">
+      <div class="home_image">
+        <img src="{{ profile?.imageUrl }}" alt="Home Image" class="img-fluid">
+      </div>
+  </div>
+  </div>
+</section>

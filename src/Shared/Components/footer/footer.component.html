@@ -1,0 +1,23 @@
+<footer>
+  <div class="waves">
+    <div class="wave" id="wave1"></div>
+    <div class="wave" id="wave2"></div>
+    <div class="wave" id="wave3"></div>
+    <div class="wave" id="wave4"></div>
+  </div>
+  <ul class="social_icon">
+    <li><a href="{{ profile?.linkedInUrl }}" target="_blank"><i class="bi bi-linkedin"></i></a></li>
+    <li><a href="mailto:{{ profile?.email }}" target="_blank"><i class="bi bi-envelope"></i></a></li>
+    <li><a href="{{ profile?.gitHubUrl }}" target="_blank"><i class="bi bi-github"></i></a></li>
+  </ul>
+  <div class="footer_text">
+    <p>تم التصميم بواسطة {{profile?.name}}</p>
+  <ul class="menu">
+    <li><a href="#">الرئسية</a></li>
+    <li><a href="#">حول</a></li>
+    <li><a href="#">اتصل بنا</a></li>
+    <li><a href="#">المشاريع</a></li>
+  </ul>
+  <p>&copy; 2025 {{profile?.name}} | جميع الحقوق محفوظة</p>
+  </div>
+</footer>
