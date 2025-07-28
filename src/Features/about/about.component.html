@@ -1,1 +1,16 @@
-<p>about works!</p>
+<section class="container">
+  <div class="row section">
+    <div class="align-self-center col-sm-12 justify-content-center">
+      <h1 class="text-center">مرحبا بكم في صفحة التعريف</h1>
+      <h1 class="text-center">اسمي {{ profile?.name }}</h1>
+      <h2 class="text-center">أنا {{ profile?.title }}</h2>
+      <p class="text-center">{{ profile?.bio }}</p>
+      <div class="align-self-center text-center">
+        <a class="btn btn-primary ms-4 mt-3" href="../../assets/docs/HossamMostafaIbrahim-Resume.pdf" download target="_blank" role="button"><i class="bi bi-file-earmark-arrow-down"></i> تحميل السيرة الذاتية</a>
+        <a class="btn btn-secondary ms-4 mt-3" href="{{ profile?.gitHubUrl }}" target="_blank" role="button"><i class="bi bi-github"></i> رابط الجيت هب</a>
+        <a class="btn btn-secondary ms-4 mt-3" [routerLink] = "['/skills']" role="button"><i class="bi bi-code-slash"></i>  رابط مهاراتي</a>
+      </div>
+      
+    </div>
+  </div>
+</section>

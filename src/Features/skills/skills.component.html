@@ -1,1 +1,47 @@
-<p>skills works!</p>
+<section class="container overflow-auto">
+  <div class="section mt-4">
+    <h1 class="text-center mb-5">المهارات</h1>
+    <div>
+      @if(skills.length === 0)
+      {
+        <div class="w-100 shadow-sm">
+          <div>
+            <p class="text-bg-warning p-3">لا توجد مهارات لعرضها</p>
+          </div>
+        </div>
+      }@else {
+        <div class="row g-4">
+          @for (skill of skills; track $index) {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div>
+                      <i class="bi {{ getLevelIcon(skill.level) }} ms-2"
+                        data-bs-toggle="tooltip"
+                        [attr.title]="'المستوى: ' + getLevelName(skill.level)">
+                      </i>
+                      <strong>{{ skill.name }}</strong>
+                    </div>
+                  </div>
+                  <div class="progress" style="height: 25px;">
+                    <div
+                      class="progress-bar {{ getProgressClass(skill.level) }}"
+                      [style.width.%]="getProgressPercent(skill.level)"
+                      role="progressbar"
+                      [attr.aria-valuenow]="skill.level"
+                      aria-valuemin="1"
+                      aria-valuemax="5"
+                    >
+                      {{ getLevelName(skill.level) }}
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</section>

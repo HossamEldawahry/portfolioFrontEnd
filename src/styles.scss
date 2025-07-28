@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.section
+{
+  height: calc(100vh - 350px);
+}
+@media screen and (max-width: 768px) {
+  .section{
+    display: block;
+    margin-top: 48px;
+    height: calc(100vh - 400px);
+  }
+  
+}
