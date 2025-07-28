@@ -2,7 +2,7 @@ export interface IProject {
   id: number;
   title: string;
   description?: string;
-  ImageUrl?: string;
-  GitHubUrl?: string;
-  DemoUrl?: string;
+  imageUrl?: string;
+  gitHubUrl?: string;
+  demoUrl?: string;
 }

@@ -1,1 +1,30 @@
-<p>projects works!</p>
+<section class="container mt-4">
+  <div class="section">
+    <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h4 class="m-2 text-center">قائمة المشاريع</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+      @if(projects.length === 0) {
+        <li class="list-group-item text-center">
+          <p class="text-muted">لا توجد مشاريع لعرضها</p>
+        </li>
+      } @else {
+        @for(project of projects; track project.id) {
+          <a [routerLink]="['/projects', project.id]" class="fs-4 text-center">
+            <li class="cursor-pointer list-group-item">
+            {{ project.title }}
+          </li>
+          </a>
+        }
+      }
+    </ul>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+      <button class="btn btn-outline-primary" (click)="prevPage()" [disabled]="page === 1">السابق</button>
+      <span>الصفحة {{ page }} من {{ totalPages }} (عدد المشاريع: {{ totalCount }})</span>
+      <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="page === totalPages">التالي</button>
+    </div>
+  </div>
+  </div>
+  
+</section>
