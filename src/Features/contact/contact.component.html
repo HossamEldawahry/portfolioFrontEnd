@@ -1,1 +1,70 @@
-<p>contact works!</p>
+<section class="container">
+  <div class="row section">
+    <form class="col-sm-12 justify-content-center" [formGroup]="formMessage" (ngSubmit)="onSubmit()">
+      <h1 class="text-center">اتصل بنا</h1>
+      <div class="mb-3">
+        <label for="name" class="form-label">الأسم</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="أدخل الاسم">
+        @if(name.dirty && name.touched)
+        {
+          @if(name.errors?.['required'])
+          {
+            <span class="text-danger">الرجاء إدخال الاسم</span>
+          }
+          @if(name.errors?.['minlength'])
+          {
+            <span class="text-danger">الاسم يجب أن يكون على الأقل 3 أحرف</span>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">البريد الإلكتروني</label>
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="أدخل بريدك الإلكتروني">
+        @if(email.dirty && email.touched)
+        {
+          @if(email.errors?.['required'])
+          {
+            <span class="text-danger">الرجاء إدخال البريد الالكتروني</span>
+          }
+          @if(email.errors?.['email'])
+          {
+            <span class="text-danger">الرجاء إدخال بريد إلكتروني صحيح</span>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">الموضوع</label>
+        <input type="text" class="form-control" formControlName="subject" id="subject" placeholder="أدخل الموضوع">
+        @if(subject.dirty && subject.touched)
+        {
+          @if(subject.errors?.['required'])
+          {
+            <span class="text-danger">الرجاء إدخال الموضوع</span>
+          }
+          @if(subject.errors?.['minlength'])
+          {
+            <span class="text-danger">الموضوع يجب أن يكون على الأقل 5 أحرف</span>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">الرسالة</label>
+        <textarea class="form-control" formControlName="content" id="content" placeholder="أدخل رسالتك"></textarea>
+        @if(content.dirty && content.touched)
+        {
+          @if(content.errors?.['required'])
+          {
+            <span class="text-danger">الرجاء إدخال الرسالة</span>
+          }
+          @if(content.errors?.['minlength'])
+          {
+            <span class="text-danger">الرسالة يجب أن تكون على الأقل 10 أحرف</span>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100">إرسال</button>
+      </div>
+    </form>
+  </div>
+</section>

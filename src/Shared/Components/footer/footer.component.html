@@ -13,10 +13,10 @@
   <div class="footer_text">
     <p>تم التصميم بواسطة {{profile?.name}}</p>
   <ul class="menu">
-    <li><a href="#">الرئسية</a></li>
-    <li><a href="#">حول</a></li>
-    <li><a href="#">اتصل بنا</a></li>
-    <li><a href="#">المشاريع</a></li>
+    <li><a [routerLink]="['']">الرئسية</a></li>
+    <li><a [routerLink]="['about']">حول</a></li>
+    <li><a [routerLink]="['contact']">اتصل بنا</a></li>
+    <li><a [routerLink]="['projects']">المشاريع</a></li>
   </ul>
   <p>&copy; 2025 {{profile?.name}} | جميع الحقوق محفوظة</p>
   </div>

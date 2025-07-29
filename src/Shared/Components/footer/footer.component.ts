@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IProfile } from '../../../Core/Models/iprofile';
 import { ProfileServiceService } from '../../../Core/Services/profile/profile-service.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
