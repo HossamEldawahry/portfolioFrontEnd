@@ -1,0 +1,1 @@
+var o="http://hossamportfolioapi.runasp.net",s="http://hossamportfolioapi.runasp.net/api/Profile",t="http://hossamportfolioapi.runasp.net/api/Projects",p="http://hossamportfolioapi.runasp.net/api/Skills",a="http://hossamportfolioapi.runasp.net/api/Message";export{o as a,s as b,t as c,p as d,a as e};
