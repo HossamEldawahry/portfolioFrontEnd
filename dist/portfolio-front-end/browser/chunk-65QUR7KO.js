@@ -1,1 +1,0 @@
-import{b as o}from"./chunk-D65GWSZP.js";import{M as r,R as e,Sb as i}from"./chunk-QYIWFP5N.js";var n=class t{constructor(a){this._httpClient=a}getProfile(){return this._httpClient.get(`${o}/GetbyId/1`)}static \u0275fac=function(p){return new(p||t)(e(i))};static \u0275prov=r({token:t,factory:t.\u0275fac,providedIn:"root"})};export{n as a};
