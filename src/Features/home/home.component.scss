@@ -18,8 +18,9 @@
 }
 @media screen and (max-width: 768px) {
   .home_image {
-    display: none;
-  }
+    height: 200px;
+  width: 200px;
+}
   .home{
     display: block;
     margin-top: 48px;

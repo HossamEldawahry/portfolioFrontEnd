@@ -1,0 +1,16 @@
+.home_image{
+  max-height: 400px;
+  max-width: 600px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  .home_image {
+  max-height: 200px;
+  max-width: 300px;
+}
+  }
