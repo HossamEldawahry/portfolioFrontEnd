@@ -17,9 +17,11 @@ export class NavigationComponent {
       if (this.currentTheme === 'dark') {
         this.renderer.setAttribute(body, 'data-bs-theme', 'light');
         this.currentTheme = 'light';
+        localStorage.setItem('theme', 'light');
       } else {
         this.renderer.setAttribute(body, 'data-bs-theme', 'dark');
         this.currentTheme = 'dark';
+        localStorage.setItem('theme', 'dark');
       }
     }
 }
