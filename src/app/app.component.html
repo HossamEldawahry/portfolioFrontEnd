@@ -1,3 +1,6 @@
+@if (loading$ | async) {
+  <app-loading></app-loading>
+ }
 <app-navigation></app-navigation>
 <router-outlet class="m-lg-5"></router-outlet>
 <app-footer></app-footer>
