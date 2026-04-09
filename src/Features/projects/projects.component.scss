@@ -21,11 +21,64 @@
 }
 
 .project-row {
-  display: block;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
   text-decoration: none;
   color: inherit;
   padding: 1rem;
   border-bottom: 1px solid var(--surface-border);
+}
+
+.project-thumb {
+  flex: 0 0 120px;
+  width: 120px;
+  height: 80px;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-text);
+  font-size: 1.5rem;
+}
+
+.project-row-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.project-row-body h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.project-row-body p {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 0.95rem;
 }
 
 .project-row:hover {
@@ -37,4 +90,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+}
+
+@media (max-width: 576px) {
+  .project-row {
+    flex-direction: column;
+  }
+
+  .project-thumb {
+    width: 100%;
+    height: 140px;
+  }
 }

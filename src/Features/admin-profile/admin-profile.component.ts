@@ -14,9 +14,11 @@ import { resolveApiMediaUrl } from '../../Core/server/baseUrl';
 })
 export class AdminProfileComponent implements OnInit, OnDestroy {
   @ViewChild('profileImageInput') profileImageInput?: ElementRef<HTMLInputElement>;
+  @ViewChild('cvInput') cvInput?: ElementRef<HTMLInputElement>;
 
   profile?: IProfile;
   selectedImageFile: File | null = null;
+  selectedCvFile: File | null = null;
   private uploadPreviewObjectUrl: string | null = null;
 
   form = new FormGroup({
@@ -45,6 +47,10 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     return resolveApiMediaUrl(this.profile?.imageUrl);
   }
 
+  get currentResumeHref(): string | null {
+    return resolveApiMediaUrl(this.profile?.resumeUrl);
+  }
+
   loadProfile(): void {
     this.profileService.getProfile().subscribe({
       next: (data) => {
@@ -71,6 +77,11 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  onCvSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.selectedCvFile = input.files?.[0] ?? null;
+  }
+
   save(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -88,12 +99,15 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     if (this.selectedImageFile) {
       formData.append('image', this.selectedImageFile);
     }
+    if (this.selectedCvFile) {
+      formData.append('resume', this.selectedCvFile);
+    }
 
     if (this.profile?.id) {
       this.profileService.updateProfile(this.profile.id, formData).subscribe({
         next: () => {
           this.toastr.success('تم تحديث الملف الشخصي');
-          this.clearImageSelectionAfterSave();
+          this.clearFileInputsAfterSave();
           this.loadProfile();
         }
       });
@@ -103,7 +117,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     this.profileService.createProfile(formData).subscribe({
       next: () => {
         this.toastr.success('تم إنشاء الملف الشخصي');
-        this.clearImageSelectionAfterSave();
+        this.clearFileInputsAfterSave();
         this.loadProfile();
       }
     });
@@ -116,12 +130,17 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  private clearImageSelectionAfterSave(): void {
+  private clearFileInputsAfterSave(): void {
     this.selectedImageFile = null;
+    this.selectedCvFile = null;
     this.revokeUploadPreview();
-    const el = this.profileImageInput?.nativeElement;
-    if (el) {
-      el.value = '';
+    const imgEl = this.profileImageInput?.nativeElement;
+    if (imgEl) {
+      imgEl.value = '';
+    }
+    const cvEl = this.cvInput?.nativeElement;
+    if (cvEl) {
+      cvEl.value = '';
     }
   }
 }

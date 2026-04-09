@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileServiceService } from '../../Core/Services/profile/profile-service.service';
 import { IProfile } from '../../Core/Models/iprofile';
-import { apiBaseUrl } from '../../Core/server/baseUrl';
+import { resolveApiMediaUrl } from '../../Core/server/baseUrl';
 import { ProjectsServicesService } from '../../Core/Services/projects/projects-services.service';
 import { IProject } from '../../Core/Models/iproject';
 import { StatsService } from '../../Core/Services/stats/stats.service';
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       next: (data) => {
         this.profile = data;
         if (this.profile.imageUrl) {
-          this.profile.imageUrl = `${apiBaseUrl}${this.profile.imageUrl}`;
+          this.profile.imageUrl = resolveApiMediaUrl(this.profile.imageUrl) ?? this.profile.imageUrl;
         }
       }
     });
@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       next: (projects) => {
         this.featuredProjects = projects.map((project) => ({
           ...project,
-          imageUrl: project.imageUrl ? `${apiBaseUrl}${project.imageUrl}` : null
+          imageUrl: project.imageUrl ? resolveApiMediaUrl(project.imageUrl) : null
         }));
       }
     });
@@ -76,5 +76,14 @@ export class HomeComponent implements OnInit {
     if (level >= 3) return 'Intermediate';
     if (level >= 2) return 'Beginner+';
     return 'Beginner';
+  }
+
+  /** رابط تحميل السيرة: من الـ API أو الملف الافتراضي في assets */
+  get resumeDownloadHref(): string {
+    const fromApi = resolveApiMediaUrl(this.profile?.resumeUrl);
+    if (fromApi) {
+      return fromApi;
+    }
+    return 'assets/docs/HossamMostafaIbrahim-Resume.pdf';
   }
 }

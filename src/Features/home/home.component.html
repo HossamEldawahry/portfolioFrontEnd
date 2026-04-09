@@ -6,7 +6,7 @@
       <h2>{{ profile?.title }}</h2>
       <p>{{ profile?.bio }}</p>
       <div class="d-flex gap-3 flex-wrap">
-        <a class="btn btn-primary" href="../../assets/docs/HossamMostafaIbrahim-Resume.pdf" download target="_blank" role="button">
+        <a class="btn btn-primary" [href]="resumeDownloadHref" download target="_blank" role="button">
           <i class="bi bi-file-earmark-arrow-down"></i>
           تحميل السيرة الذاتية
         </a>
@@ -45,8 +45,19 @@
       <div class="mini-projects">
         @for (project of featuredProjects; track project.id) {
           <a class="mini-card" [routerLink]="['/projects', project.id]">
-            <h5>{{ project.title }}</h5>
-            <p>{{ project.description | slice:0:95 }}...</p>
+            <div class="mini-card-inner">
+              <div class="mini-card-thumb">
+                @if (project.imageUrl) {
+                  <img [src]="project.imageUrl" [alt]="project.title" />
+                } @else {
+                  <div class="mini-card-thumb-placeholder"><i class="bi bi-image"></i></div>
+                }
+              </div>
+              <div class="mini-card-body">
+                <h5>{{ project.title }}</h5>
+                <p>{{ project.description | slice:0:95 }}...</p>
+              </div>
+            </div>
           </a>
         }
       </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProject } from '../../Core/Models/iproject';
 import { ProjectsServicesService } from '../../Core/Services/projects/projects-services.service';
-import { apiBaseUrl } from '../../Core/server/baseUrl';
+import { resolveApiMediaUrl } from '../../Core/server/baseUrl';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ loadProjects(): void {
     next: (res) => {
       this.projects = res.items.map((project) => ({
         ...project,
-        imageUrl: project.imageUrl ? `${apiBaseUrl}${project.imageUrl}` : null
+        imageUrl: project.imageUrl ? resolveApiMediaUrl(project.imageUrl) : null
       }));
       this.totalCount = res.totalCount;
       this.totalPages = res.totalPages;

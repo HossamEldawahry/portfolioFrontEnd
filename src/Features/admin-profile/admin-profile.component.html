@@ -28,6 +28,18 @@
           }
         </div>
         <div class="col-12">
+          <label class="form-label small text-muted mb-1">السيرة الذاتية (PDF)</label>
+          <input #cvInput class="form-control" type="file" accept=".pdf,application/pdf" (change)="onCvSelected($event)" />
+          @if (selectedCvFile) {
+            <p class="small text-muted mt-1 mb-0">سيتم رفع: {{ selectedCvFile.name }}</p>
+          }
+          @if (currentResumeHref && !selectedCvFile) {
+            <p class="small mt-2 mb-0">
+              <a [href]="currentResumeHref" target="_blank" rel="noopener">عرض السيرة الحالية (PDF)</a>
+            </p>
+          }
+        </div>
+        <div class="col-12">
           <textarea class="form-control" rows="5" formControlName="bio" placeholder="نبذة تعريفية"></textarea>
         </div>
       </div>

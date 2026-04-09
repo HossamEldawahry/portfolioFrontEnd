@@ -13,9 +13,20 @@
       } @else {
         @for(project of projects; track project.id) {
           <a [routerLink]="['/projects', project.id]" class="project-row">
-            <h4>{{ project.title }}</h4>
-            <p>{{ project.description }}</p>
-            <span class="badge rounded-pill text-bg-primary" *ngIf="project.isFeatured">Featured</span>
+            <div class="project-thumb">
+              @if (project.imageUrl) {
+                <img [src]="project.imageUrl" [alt]="project.title" />
+              } @else {
+                <div class="project-thumb-placeholder"><i class="bi bi-image"></i></div>
+              }
+            </div>
+            <div class="project-row-body">
+              <div class="project-row-head">
+                <h4>{{ project.title }}</h4>
+                <span class="badge rounded-pill text-bg-primary" *ngIf="project.isFeatured">Featured</span>
+              </div>
+              <p>{{ project.description }}</p>
+            </div>
           </a>
         }
       }

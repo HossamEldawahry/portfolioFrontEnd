@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileServiceService } from '../../Core/Services/profile/profile-service.service';
 import { IProfile } from '../../Core/Models/iprofile';
 import { RouterLink } from '@angular/router';
+import { resolveApiMediaUrl } from '../../Core/server/baseUrl';
 
 @Component({
   selector: 'app-about',
@@ -12,6 +13,10 @@ import { RouterLink } from '@angular/router';
 export class AboutComponent implements OnInit {
 profile: IProfile | undefined;
   constructor(private _profileService: ProfileServiceService) {}
+
+  get resumeHref(): string {
+    return resolveApiMediaUrl(this.profile?.resumeUrl) ?? 'assets/docs/HossamMostafaIbrahim-Resume.pdf';
+  }
   ngOnInit(): void {
     this._profileService.getProfile().subscribe({
       next: (data) => {
