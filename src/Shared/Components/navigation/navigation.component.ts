@@ -3,6 +3,8 @@ import { Component, DestroyRef, HostListener, OnInit, Renderer2, inject } from '
 import { Router, RouterModule } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../../Core/Services/auth/auth.service';
+import { ProfileServiceService } from '../../../Core/Services/profile/profile-service.service';
+import { resolveApiMediaUrl } from '../../../Core/server/baseUrl';
 
 @Component({
   selector: 'app-navigation',
@@ -16,11 +18,14 @@ export class NavigationComponent implements OnInit {
   isLoggedIn = false;
   /** Bootstrap dropdown JS غير موثوق مع Angular؛ نفتح/نغلق يدويًا */
   userMenuOpen = false;
+  /** رابط تحميل السيرة من الـ API (يظهر الزر في الشريط عند التوفر) */
+  profileResumeHref: string | null = null;
 
   constructor(
     private renderer: Renderer2,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private profileService: ProfileServiceService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +44,12 @@ export class NavigationComponent implements OnInit {
     this.authService.tryRestoreSession().subscribe({
       next: (restored) => {
         this.isLoggedIn = restored;
+      }
+    });
+
+    this.profileService.getProfile().subscribe({
+      next: (p) => {
+        this.profileResumeHref = resolveApiMediaUrl(p.resumeUrl);
       }
     });
   }

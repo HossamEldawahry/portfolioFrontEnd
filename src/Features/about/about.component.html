@@ -8,6 +8,15 @@
       <div class="align-self-center text-center">
         @if (resumeHref) {
           <a class="btn btn-primary ms-4 mt-3" [href]="resumeHref" download target="_blank" rel="noopener" role="button"><i class="bi bi-file-earmark-arrow-down"></i> تحميل السيرة الذاتية</a>
+        } @else {
+          <button
+            type="button"
+            class="btn btn-primary ms-4 mt-3"
+            disabled
+            title="ارفع ملف السيرة من لوحة التحكم ← الملف الشخصي"
+          >
+            <i class="bi bi-file-earmark-arrow-down"></i> تحميل السيرة الذاتية
+          </button>
         }
         <a class="btn btn-secondary ms-4 mt-3" href="{{ profile?.gitHubUrl }}" target="_blank" role="button"><i class="bi bi-github"></i> رابط الجيت هب</a>
         <a class="btn btn-secondary ms-4 mt-3" [routerLink] = "['/skills']" role="button"><i class="bi bi-code-slash"></i>  رابط مهاراتي</a>

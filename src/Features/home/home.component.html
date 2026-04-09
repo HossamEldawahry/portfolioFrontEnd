@@ -11,6 +11,16 @@
             <i class="bi bi-file-earmark-arrow-down"></i>
             تحميل السيرة الذاتية
           </a>
+        } @else {
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            disabled
+            title="ارفع ملف السيرة من لوحة التحكم ← الملف الشخصي حتى يظهر الرابط هنا"
+          >
+            <i class="bi bi-file-earmark-arrow-down"></i>
+            تحميل السيرة الذاتية
+          </button>
         }
         <a class="btn btn-outline-light" [href]="profile?.gitHubUrl || '#'" target="_blank" role="button">
           <i class="bi bi-github"></i>

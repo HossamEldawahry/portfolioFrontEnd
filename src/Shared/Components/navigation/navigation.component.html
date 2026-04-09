@@ -19,7 +19,30 @@
           <a class="nav-link" [routerLink]="['projects']" [routerLinkActive]="['active']">المشاريع</a>
         </li>
       </ul>
-      <div class="d-flex gap-2">
+      <div class="d-flex gap-2 align-items-center flex-wrap">
+        @if (profileResumeHref) {
+          <a
+            class="btn btn-outline-success btn-sm"
+            [href]="profileResumeHref"
+            download
+            target="_blank"
+            rel="noopener"
+            title="تحميل السيرة الذاتية"
+          >
+            <i class="bi bi-file-earmark-arrow-down"></i>
+            السيرة
+          </a>
+        } @else {
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            disabled
+            title="ارفع السيرة من لوحة التحكم ← الملف الشخصي"
+          >
+            <i class="bi bi-file-earmark-arrow-down"></i>
+            السيرة
+          </button>
+        }
         @if (isLoggedIn) {
           <div class="dropdown user-menu-root" [class.show]="userMenuOpen">
             <button
