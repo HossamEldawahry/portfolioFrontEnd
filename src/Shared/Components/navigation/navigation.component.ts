@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, Renderer2 } from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -8,9 +8,15 @@ import {RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   currentTheme: 'light' | 'dark' = 'dark';
   constructor(private renderer: Renderer2) {}
+  ngOnInit(): void {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      this.currentTheme = savedTheme;
+    }
+  }
   toggleTheme() {
       const body = document.body;
 

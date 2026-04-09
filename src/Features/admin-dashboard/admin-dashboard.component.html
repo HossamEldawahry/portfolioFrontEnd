@@ -1,0 +1,21 @@
+<section class="container admin-board">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Admin Dashboard</h1>
+    <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+  </div>
+
+  <div class="stats-grid" *ngIf="stats as s">
+    <article class="stats-card">
+      <h2>{{ s.projectsCount }}</h2>
+      <p>Projects</p>
+    </article>
+    <article class="stats-card">
+      <h2>{{ s.skillsCount }}</h2>
+      <p>Skills</p>
+    </article>
+    <article class="stats-card">
+      <h2>{{ s.messagesCount }}</h2>
+      <p>Messages</p>
+    </article>
+  </div>
+</section>

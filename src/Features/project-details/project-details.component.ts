@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectsServicesService } from '../../Core/Services/projects/projects-services.service';
 import { IProject } from '../../Core/Models/iproject';
-import { imageBaseUrl } from '../../Core/server/baseUrl';
+import { apiBaseUrl } from '../../Core/server/baseUrl';
 
 @Component({
   selector: 'app-project-details',
@@ -26,9 +26,8 @@ export class ProjectDetailsComponent implements OnInit {
   getProjectDetails(id: number) {
     this._projectService.getProjectById(id).subscribe(data => {
       this.project = data;
-      // Ensure the imageUrl is prefixed with the base URL
       if (this.project?.imageUrl)
-        this.project.imageUrl = imageBaseUrl + this.project.imageUrl;
+        this.project.imageUrl = `${apiBaseUrl}${this.project.imageUrl}`;
     });
   }
 }

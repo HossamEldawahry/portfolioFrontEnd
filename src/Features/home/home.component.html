@@ -1,15 +1,70 @@
-<section class="container">
-  <div class="row section">
-    <div class="col-sm-12 col-lg-6 align-self-center mt-3">
-      <div class="home_image">
-        <img src="{{ profile?.imageUrl }}" alt="Home Image" class="img-fluid">
+<section class="container page-content">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <span class="pill">Portfolio</span>
+      <h1>مرحبا، أنا {{ profile?.name }}</h1>
+      <h2>{{ profile?.title }}</h2>
+      <p>{{ profile?.bio }}</p>
+      <div class="d-flex gap-3 flex-wrap">
+        <a class="btn btn-primary" href="../../assets/docs/HossamMostafaIbrahim-Resume.pdf" download target="_blank" role="button">
+          <i class="bi bi-file-earmark-arrow-down"></i>
+          تحميل السيرة الذاتية
+        </a>
+        <a class="btn btn-outline-light" [href]="profile?.gitHubUrl || '#'" target="_blank" role="button">
+          <i class="bi bi-github"></i>
+          GitHub
+        </a>
       </div>
     </div>
-    <div class="col-sm-12 col-lg-6 align-self-center mt-3">
-      <h1>مرحبا بكم. اسمي {{ profile?.name }}</h1>
-      <h2>أنا {{ profile?.title }}</h2>
-      <a class="btn btn-primary ms-4 mt-3" href="../../assets/docs/HossamMostafaIbrahim-Resume.pdf" download target="_blank" role="button"><i class="bi bi-file-earmark-arrow-down"></i> تحميل السيرة الذاتية</a>
-      <a class="btn btn-secondary ms-4 mt-3" href="{{ profile?.gitHubUrl }}" target="_blank" role="button"><i class="bi bi-github"></i> رابط الجيت هب</a>
+    <div class="hero-image">
+      <img [src]="profile?.imageUrl || ''" alt="profile" class="img-fluid" />
     </div>
+  </div>
+
+  <div class="stats-grid" *ngIf="stats as s">
+    <article class="card-glass">
+      <h3>{{ s.projectsCount }}</h3>
+      <p>Project</p>
+    </article>
+    <article class="card-glass">
+      <h3>{{ s.skillsCount }}</h3>
+      <p>Skill</p>
+    </article>
+    <article class="card-glass">
+      <h3>{{ s.messagesCount }}</h3>
+      <p>Message</p>
+    </article>
+  </div>
+
+  <div class="content-grid">
+    <article class="panel">
+      <div class="panel-title">
+        <h4>Featured Projects</h4>
+        <a [routerLink]="['/projects']">كل المشاريع</a>
+      </div>
+      <div class="mini-projects">
+        @for (project of featuredProjects; track project.id) {
+          <a class="mini-card" [routerLink]="['/projects', project.id]">
+            <h5>{{ project.title }}</h5>
+            <p>{{ project.description | slice:0:95 }}...</p>
+          </a>
+        }
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-title">
+        <h4>Skills Snapshot</h4>
+        <a [routerLink]="['/skills']">كل المهارات</a>
+      </div>
+      <div class="skills-list">
+        @for (skill of skills | slice:0:6; track skill.id) {
+          <div class="skill-item">
+            <span>{{ skill.name }}</span>
+            <span>{{ skill.level }}/5</span>
+          </div>
+        }
+      </div>
+    </article>
   </div>
 </section>

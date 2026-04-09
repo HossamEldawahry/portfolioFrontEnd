@@ -1,10 +1,10 @@
 export interface IProfile {
-  id : number;
+  id: number;
   name: string;
   title: string;
   email: string;
   bio: string;
-  imageUrl?: string;
-  linkedInUrl?: string;
-  gitHubUrl?: string;
+  imageUrl?: string | null;
+  linkedInUrl?: string | null;
+  gitHubUrl?: string | null;
 }

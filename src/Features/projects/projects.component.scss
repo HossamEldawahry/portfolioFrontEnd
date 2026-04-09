@@ -1,0 +1,40 @@
+.projects-page {
+  padding-block: 2rem 3rem;
+}
+
+.projects-shell {
+  border: 1px solid var(--surface-border);
+  border-radius: 1rem;
+  background: var(--surface-elevated);
+  overflow: hidden;
+}
+
+.projects-header {
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.projects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project-row {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.project-row:hover {
+  background: rgba(120, 130, 255, 0.09);
+}
+
+.pagination-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}

@@ -1,0 +1,22 @@
+.nav-shell {
+  backdrop-filter: blur(10px);
+  background: rgba(12, 18, 36, 0.7);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.navbar-brand {
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-link {
+  color: var(--muted-text);
+  border-radius: 8px;
+  padding-inline: 0.85rem !important;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #fff;
+  background: rgba(104, 118, 255, 0.2);
+}

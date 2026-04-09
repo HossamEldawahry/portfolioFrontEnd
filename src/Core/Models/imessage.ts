@@ -4,5 +4,12 @@ export interface IMessage {
   email: string;
   subject: string;
   content: string;
-  createdAt: Date;
+  createdAt: string;
+}
+
+export interface ICreateMessageRequest {
+  name: string;
+  email: string;
+  subject: string;
+  content: string;
 }

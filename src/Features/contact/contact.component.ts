@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageServicesService } from '../../Core/Services/message/message-services.service';
-import { IMessage } from '../../Core/Models/imessage';
+import { ICreateMessageRequest } from '../../Core/Models/imessage';
 import {ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -50,24 +51,25 @@ if(this.formMessage.invalid) {
   }
 
 }
-sendMessage(message: IMessage)
+sendMessage(message: ICreateMessageRequest)
 {
   this._messageService.sendMessage(message).subscribe({
-    next: (response) => {
+    next: () => {
       this.toastr.success('✅ تم إرسال الرسالة بنجاح' , 'نجاح', {
         timeOut: 3000,
         positionClass: 'toast-top-right',
         closeButton: true
       })
-      console.log('Message sent successfully:', response);
     },
-    error: (error) => {
-      this.toastr.error('❌ فشل في إرسال الرسالة', 'خطأ', {
+    error: (error: HttpErrorResponse) => {
+      const message = error.status === 429
+        ? 'تم تجاوز الحد المسموح. حاول مرة أخرى بعد قليل.'
+        : '❌ فشل في إرسال الرسالة';
+      this.toastr.error(message, 'خطأ', {
         timeOut: 3000,
         positionClass: 'toast-top-right',
         closeButton: true
       });
-      console.error('Error sending message:', error);
     }
   });
 }

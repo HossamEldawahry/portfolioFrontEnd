@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IMessage } from '../../Models/imessage';
-import { messageBaseUrl } from '../../server/baseUrl';
+import { ICreateMessageRequest } from '../../Models/imessage';
+import { apiV1BaseUrl } from '../../server/baseUrl';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageServicesService {
-  message: IMessage | undefined;
+  private readonly messageUrl = `${apiV1BaseUrl}/messages`;
+
   constructor(private _httpClient: HttpClient) { }
-  sendMessage(message: IMessage) {
-    return this._httpClient.post(`${messageBaseUrl}/Create`, message);
+
+  sendMessage(message: ICreateMessageRequest) {
+    return this._httpClient.post(this.messageUrl, message);
   }
 }

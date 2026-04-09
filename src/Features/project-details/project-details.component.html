@@ -1,17 +1,15 @@
-<section class="container">
-  <div class="row section">
-    <div class="col-sm-12 col-lg-6 align-self-center mt-3">
-      <div class="home_image">
-        <img src="{{ project?.imageUrl }}" alt="Home Image" class="img-fluid">
+<section class="container details-page">
+  <div class="details-shell">
+    <div class="details-image">
+      <img [src]="project?.imageUrl || ''" alt="project image" class="img-fluid">
+    </div>
+    <div class="details-content">
+      <h1>{{ project?.title }}</h1>
+      <p>{{ project?.description }}</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" [href]="project?.demoUrl || '#'" target="_blank" role="button"><i class="bi bi-broadcast"></i> رابط العرض</a>
+        <a class="btn btn-outline-light" [href]="project?.gitHubUrl || '#'" target="_blank" role="button"><i class="bi bi-github"></i> GitHub</a>
       </div>
     </div>
-    <div class="col-sm-12 col-lg-6 align-self-center mt-3">
-      <h1>{{project?.title }}</h1>
-      <p>{{ project?.description }}</p>
-      <a class="btn btn-primary ms-4 mt-3" href="{{project?.demoUrl}}" download target="_blank" role="button"><i class="bi bi-broadcast"></i> رابط عرض المشروع</a>
-      <a class="btn btn-secondary ms-4 mt-3" href="{{ project?.gitHubUrl }}" target="_blank" role="button"><i class="bi bi-github"></i> رابط الجيت هب</a>
-    </div>
-    
   </div>
 </section>
-

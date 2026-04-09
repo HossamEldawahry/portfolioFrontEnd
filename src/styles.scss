@@ -1,14 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-.section
-{
-  height: calc(100vh - 350px);
+:root {
+  --surface-border: rgba(158, 169, 212, 0.2);
+  --surface-elevated: rgba(18, 28, 53, 0.65);
+  --soft-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+  --muted-text: #afbbd8;
 }
-@media screen and (max-width: 768px) {
-  .section{
-    display: block;
-    margin-top: 48px;
-    height: calc(100vh - 400px);
-    overflow: auto;
-  }
-  
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #eef2ff;
+  background: radial-gradient(circle at 10% 10%, #273562 0%, #090d1a 45%, #070b14 100%);
+}
+
+a {
+  color: #9fb0ff;
+}
+
+.section {
+  min-height: calc(100vh - 360px);
 }

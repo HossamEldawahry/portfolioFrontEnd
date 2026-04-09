@@ -1,0 +1,15 @@
+.about-page {
+  padding-block: 2rem 3rem;
+}
+
+.about-card {
+  border-radius: 1rem;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-elevated);
+  padding: 1.4rem;
+  box-shadow: var(--soft-shadow);
+}
+
+.about-card p {
+  color: var(--muted-text);
+}
