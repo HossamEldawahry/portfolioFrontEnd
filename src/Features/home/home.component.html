@@ -59,9 +59,22 @@
       </div>
       <div class="skills-list">
         @for (skill of skills | slice:0:6; track skill.id) {
-          <div class="skill-item">
-            <span>{{ skill.name }}</span>
-            <span>{{ skill.level }}/5</span>
+          <div class="skill-item skill-card">
+            <div class="skill-top">
+              <span class="skill-name">
+                <i class="bi" [ngClass]="getSkillIcon(skill.level)"></i>
+                {{ skill.name }}
+              </span>
+              <span class="skill-label">{{ getSkillLabel(skill.level) }}</span>
+            </div>
+            <div class="skill-progress">
+              <div class="skill-progress-value" [style.width.%]="getSkillPercent(skill.level)"></div>
+            </div>
+            <div class="skill-stars">
+              @for (star of [1,2,3,4,5]; track star) {
+                <i class="bi" [ngClass]="star <= skill.level ? 'bi-star-fill filled' : 'bi-star'"></i>
+              }
+            </div>
           </div>
         }
       </div>

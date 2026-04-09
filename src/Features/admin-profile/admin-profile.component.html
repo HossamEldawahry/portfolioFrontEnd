@@ -19,7 +19,13 @@
           <input class="form-control" formControlName="gitHubUrl" placeholder="GitHub URL" />
         </div>
         <div class="col-md-6">
-          <input class="form-control" type="file" (change)="onImageSelected($event)" />
+          <label class="form-label small text-muted mb-1">صورة الملف الشخصي</label>
+          <input #profileImageInput class="form-control" type="file" accept="image/*" (change)="onImageSelected($event)" />
+          @if (formImageSrc) {
+            <div class="image-preview-wrap mt-2">
+              <img [src]="formImageSrc" alt="معاينة الصورة" class="image-preview image-preview--round" />
+            </div>
+          }
         </div>
         <div class="col-12">
           <textarea class="form-control" rows="5" formControlName="bio" placeholder="نبذة تعريفية"></textarea>

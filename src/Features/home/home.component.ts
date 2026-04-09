@@ -57,4 +57,24 @@ export class HomeComponent implements OnInit {
       next: (stats) => (this.stats = stats)
     });
   }
+
+  getSkillPercent(level: number): number {
+    return Math.max(0, Math.min(5, level)) * 20;
+  }
+
+  getSkillIcon(level: number): string {
+    if (level >= 5) return 'bi-stars';
+    if (level >= 4) return 'bi-award';
+    if (level >= 3) return 'bi-lightning-charge';
+    if (level >= 2) return 'bi-code-slash';
+    return 'bi-person-workspace';
+  }
+
+  getSkillLabel(level: number): string {
+    if (level >= 5) return 'Expert';
+    if (level >= 4) return 'Advanced';
+    if (level >= 3) return 'Intermediate';
+    if (level >= 2) return 'Beginner+';
+    return 'Beginner';
+  }
 }

@@ -9,7 +9,13 @@
           <textarea class="form-control mb-2" rows="4" formControlName="description" placeholder="الوصف"></textarea>
           <input class="form-control mb-2" formControlName="gitHubUrl" placeholder="GitHub URL" />
           <input class="form-control mb-2" formControlName="demoUrl" placeholder="Demo URL" />
-          <input class="form-control mb-2" type="file" (change)="onImageSelected($event)" />
+          <label class="form-label small text-muted mb-1">صورة المشروع</label>
+          <input #projectImageInput class="form-control mb-2" type="file" accept="image/*" (change)="onImageSelected($event)" />
+          @if (formImageSrc) {
+            <div class="image-preview-wrap mb-2">
+              <img [src]="formImageSrc" alt="معاينة صورة المشروع" class="image-preview" />
+            </div>
+          }
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" formControlName="isFeatured" id="featuredProject" />
             <label class="form-check-label" for="featuredProject">Featured</label>

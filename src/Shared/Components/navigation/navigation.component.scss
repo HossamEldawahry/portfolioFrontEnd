@@ -21,3 +21,13 @@
   color: var(--page-text);
   background: var(--hover-surface);
 }
+
+.user-menu-btn i {
+  font-size: 1rem;
+}
+
+.user-dropdown {
+  min-width: 210px;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-elevated);
+}

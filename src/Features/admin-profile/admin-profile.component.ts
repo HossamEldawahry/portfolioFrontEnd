@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IProfile } from '../../Core/Models/iprofile';
 import { ProfileServiceService } from '../../Core/Services/profile/profile-service.service';
+import { resolveApiMediaUrl } from '../../Core/server/baseUrl';
 
 @Component({
   selector: 'app-admin-profile',
@@ -11,9 +12,12 @@ import { ProfileServiceService } from '../../Core/Services/profile/profile-servi
   templateUrl: './admin-profile.component.html',
   styleUrl: './admin-profile.component.scss'
 })
-export class AdminProfileComponent implements OnInit {
+export class AdminProfileComponent implements OnInit, OnDestroy {
+  @ViewChild('profileImageInput') profileImageInput?: ElementRef<HTMLInputElement>;
+
   profile?: IProfile;
   selectedImageFile: File | null = null;
+  private uploadPreviewObjectUrl: string | null = null;
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -28,6 +32,17 @@ export class AdminProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProfile();
+  }
+
+  ngOnDestroy(): void {
+    this.revokeUploadPreview();
+  }
+
+  get formImageSrc(): string | null {
+    if (this.uploadPreviewObjectUrl) {
+      return this.uploadPreviewObjectUrl;
+    }
+    return resolveApiMediaUrl(this.profile?.imageUrl);
   }
 
   loadProfile(): void {
@@ -48,7 +63,12 @@ export class AdminProfileComponent implements OnInit {
 
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    this.selectedImageFile = input.files?.[0] ?? null;
+    const file = input.files?.[0] ?? null;
+    this.revokeUploadPreview();
+    this.selectedImageFile = file;
+    if (file) {
+      this.uploadPreviewObjectUrl = URL.createObjectURL(file);
+    }
   }
 
   save(): void {
@@ -71,7 +91,11 @@ export class AdminProfileComponent implements OnInit {
 
     if (this.profile?.id) {
       this.profileService.updateProfile(this.profile.id, formData).subscribe({
-        next: () => this.toastr.success('تم تحديث الملف الشخصي')
+        next: () => {
+          this.toastr.success('تم تحديث الملف الشخصي');
+          this.clearImageSelectionAfterSave();
+          this.loadProfile();
+        }
       });
       return;
     }
@@ -79,8 +103,25 @@ export class AdminProfileComponent implements OnInit {
     this.profileService.createProfile(formData).subscribe({
       next: () => {
         this.toastr.success('تم إنشاء الملف الشخصي');
+        this.clearImageSelectionAfterSave();
         this.loadProfile();
       }
     });
+  }
+
+  private revokeUploadPreview(): void {
+    if (this.uploadPreviewObjectUrl) {
+      URL.revokeObjectURL(this.uploadPreviewObjectUrl);
+      this.uploadPreviewObjectUrl = null;
+    }
+  }
+
+  private clearImageSelectionAfterSave(): void {
+    this.selectedImageFile = null;
+    this.revokeUploadPreview();
+    const el = this.profileImageInput?.nativeElement;
+    if (el) {
+      el.value = '';
+    }
   }
 }
