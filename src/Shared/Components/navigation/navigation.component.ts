@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, DestroyRef, OnInit, Renderer2, inject } from '@angular/core';
+import { Component, DestroyRef, HostListener, OnInit, Renderer2, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../../Core/Services/auth/auth.service';
@@ -14,6 +14,8 @@ export class NavigationComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   currentTheme: 'light' | 'dark' = 'dark';
   isLoggedIn = false;
+  /** Bootstrap dropdown JS غير موثوق مع Angular؛ نفتح/نغلق يدويًا */
+  userMenuOpen = false;
 
   constructor(
     private renderer: Renderer2,
@@ -41,6 +43,23 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.user-menu-root')) {
+      this.userMenuOpen = false;
+    }
+  }
+
+  toggleUserMenu(event: Event): void {
+    event.stopPropagation();
+    this.userMenuOpen = !this.userMenuOpen;
+  }
+
+  closeUserMenu(): void {
+    this.userMenuOpen = false;
+  }
+
   toggleTheme() {
       const body = document.body;
 
@@ -55,11 +74,8 @@ export class NavigationComponent implements OnInit {
       }
     }
 
-  goToDashboard(): void {
-    this.router.navigateByUrl('/admin/dashboard');
-  }
-
   logout(): void {
+    this.closeUserMenu();
     this.authService.logout().subscribe({
       next: () => {
         this.isLoggedIn = false;

@@ -26,8 +26,13 @@
   font-size: 1rem;
 }
 
+.user-menu-root {
+  position: relative;
+}
+
 .user-dropdown {
   min-width: 210px;
   border: 1px solid var(--surface-border);
   background: var(--surface-elevated);
+  z-index: 1050;
 }

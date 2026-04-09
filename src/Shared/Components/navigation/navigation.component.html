@@ -21,12 +21,19 @@
       </ul>
       <div class="d-flex gap-2">
         @if (isLoggedIn) {
-          <div class="dropdown">
-            <button class="btn btn-outline-primary btn-sm user-menu-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="dropdown user-menu-root" [class.show]="userMenuOpen">
+            <button
+              class="btn btn-outline-primary btn-sm user-menu-btn dropdown-toggle"
+              type="button"
+              [attr.aria-expanded]="userMenuOpen"
+              (click)="toggleUserMenu($event)"
+            >
               <i class="bi bi-person-circle"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end user-dropdown">
-              <li><button class="dropdown-item" type="button" (click)="goToDashboard()">الدخول للوحة التحكم</button></li>
+            <ul class="dropdown-menu dropdown-menu-end user-dropdown" [class.show]="userMenuOpen">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/admin/dashboard']" (click)="closeUserMenu()">الدخول للوحة التحكم</a>
+              </li>
               <li><hr class="dropdown-divider" /></li>
               <li><button class="dropdown-item text-danger" type="button" (click)="logout()">تسجيل الخروج</button></li>
             </ul>
