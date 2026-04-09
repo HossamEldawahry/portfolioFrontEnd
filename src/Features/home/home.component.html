@@ -1,7 +1,7 @@
-<section class="container page-content">
+<section class="container page-content page-enter">
   <div class="hero-grid">
-    <div class="hero-text">
-      <span class="pill">Portfolio</span>
+    <div class="hero-text stagger-children">
+      <span class="pill anim-hover-lift">بورتفوليو</span>
       <h1>مرحبا، أنا {{ profile?.name }}</h1>
       <h2>{{ profile?.title }}</h2>
       <p>{{ profile?.bio }}</p>
@@ -12,39 +12,39 @@
         </a>
         <a class="btn btn-outline-light" [href]="profile?.gitHubUrl || '#'" target="_blank" role="button">
           <i class="bi bi-github"></i>
-          GitHub
+          جيت هب
         </a>
       </div>
     </div>
-    <div class="hero-image">
-      <img [src]="profile?.imageUrl || ''" alt="profile" class="img-fluid" />
+    <div class="hero-image anim-fade-in">
+      <img [src]="profile?.imageUrl || ''" alt="صورة الملف الشخصي" class="img-fluid" />
     </div>
   </div>
 
-  <div class="stats-grid" *ngIf="stats as s">
-    <article class="card-glass">
+  <div class="stats-grid stagger-children" *ngIf="stats as s">
+    <article class="card-glass anim-hover-lift">
       <h3>{{ s.projectsCount }}</h3>
-      <p>Project</p>
+      <p>مشاريع</p>
     </article>
-    <article class="card-glass">
+    <article class="card-glass anim-hover-lift">
       <h3>{{ s.skillsCount }}</h3>
-      <p>Skill</p>
+      <p>مهارات</p>
     </article>
-    <article class="card-glass">
+    <article class="card-glass anim-hover-lift">
       <h3>{{ s.messagesCount }}</h3>
-      <p>Message</p>
+      <p>رسائل</p>
     </article>
   </div>
 
   <div class="content-grid">
-    <article class="panel">
+    <article class="panel anim-hover-lift">
       <div class="panel-title">
-        <h4>Featured Projects</h4>
+        <h4>مشاريع مميّزة</h4>
         <a [routerLink]="['/projects']">كل المشاريع</a>
       </div>
-      <div class="mini-projects">
+      <div class="mini-projects stagger-children">
         @for (project of featuredProjects; track project.id) {
-          <a class="mini-card" [routerLink]="['/projects', project.id]">
+          <a class="mini-card anim-hover-lift" [routerLink]="['/projects', project.id]">
             <div class="mini-card-inner">
               <div class="mini-card-thumb">
                 @if (project.imageUrl) {
@@ -63,12 +63,12 @@
       </div>
     </article>
 
-    <article class="panel">
+    <article class="panel anim-hover-lift">
       <div class="panel-title">
-        <h4>Skills Snapshot</h4>
+        <h4>لمحة عن المهارات</h4>
         <a [routerLink]="['/skills']">كل المهارات</a>
       </div>
-      <div class="skills-list">
+      <div class="skills-list stagger-children">
         @for (skill of skills | slice:0:6; track skill.id) {
           <div class="skill-item skill-card">
             <div class="skill-top">

@@ -1,14 +1,14 @@
-<section class="container admin-page">
+<section class="container admin-page page-enter">
   <h1>إدارة المشاريع</h1>
   <div class="row g-4">
     <div class="col-lg-5">
-      <div class="admin-card">
+      <div class="admin-card anim-hover-lift">
         <h4>{{ selectedId ? 'تعديل مشروع' : 'إضافة مشروع' }}</h4>
         <form [formGroup]="form" (ngSubmit)="save()">
           <input class="form-control mb-2" formControlName="title" placeholder="العنوان" />
           <textarea class="form-control mb-2" rows="4" formControlName="description" placeholder="الوصف"></textarea>
-          <input class="form-control mb-2" formControlName="gitHubUrl" placeholder="GitHub URL" />
-          <input class="form-control mb-2" formControlName="demoUrl" placeholder="Demo URL" />
+          <input class="form-control mb-2" formControlName="gitHubUrl" placeholder="رابط جيت هب" />
+          <input class="form-control mb-2" formControlName="demoUrl" placeholder="رابط العرض (Demo)" />
           <label class="form-label small text-muted mb-1">صورة المشروع</label>
           <input #projectImageInput class="form-control mb-2" type="file" accept="image/*" (change)="onImageSelected($event)" />
           @if (formImageSrc) {
@@ -18,7 +18,7 @@
           }
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" formControlName="isFeatured" id="featuredProject" />
-            <label class="form-check-label" for="featuredProject">Featured</label>
+            <label class="form-check-label" for="featuredProject">مشروع مميّز</label>
           </div>
           <div class="d-flex gap-2">
             <button class="btn btn-primary" type="submit">{{ selectedId ? 'حفظ التعديل' : 'إضافة' }}</button>
@@ -28,14 +28,14 @@
       </div>
     </div>
     <div class="col-lg-7">
-      <div class="admin-card">
+      <div class="admin-card anim-hover-lift">
         <h4>المشاريع الحالية</h4>
         <div class="table-responsive">
           <table class="table table-dark table-striped align-middle">
             <thead>
               <tr>
                 <th>العنوان</th>
-                <th>Featured</th>
+                <th>مميّز</th>
                 <th>إجراءات</th>
               </tr>
             </thead>

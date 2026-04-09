@@ -1,38 +1,38 @@
-<section class="container admin-board">
+<section class="container admin-board page-enter">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Admin Dashboard</h1>
-    <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+    <h1>لوحة التحكم</h1>
+    <button class="btn btn-outline-danger" (click)="logout()">تسجيل الخروج</button>
   </div>
 
-  <div class="stats-grid" *ngIf="stats as s">
-    <article class="stats-card">
+  <div class="stats-grid stagger-children" *ngIf="stats as s">
+    <article class="stats-card anim-hover-lift">
       <h2>{{ s.projectsCount }}</h2>
-      <p>Projects</p>
+      <p>مشاريع</p>
     </article>
-    <article class="stats-card">
+    <article class="stats-card anim-hover-lift">
       <h2>{{ s.skillsCount }}</h2>
-      <p>Skills</p>
+      <p>مهارات</p>
     </article>
-    <article class="stats-card">
+    <article class="stats-card anim-hover-lift">
       <h2>{{ s.messagesCount }}</h2>
-      <p>Messages</p>
+      <p>رسائل</p>
     </article>
   </div>
 
-  <div class="stats-grid mt-4">
-    <a class="stats-card text-decoration-none text-reset" [routerLink]="['/admin/projects']">
+  <div class="stats-grid mt-4 stagger-children">
+    <a class="stats-card text-decoration-none text-reset anim-hover-lift" [routerLink]="['/admin/projects']">
       <h5>المشاريع</h5>
       <p>إضافة / تعديل / حذف / مشاهدة</p>
     </a>
-    <a class="stats-card text-decoration-none text-reset" [routerLink]="['/admin/skills']">
+    <a class="stats-card text-decoration-none text-reset anim-hover-lift" [routerLink]="['/admin/skills']">
       <h5>المهارات</h5>
       <p>إضافة / تعديل / حذف / مشاهدة</p>
     </a>
-    <a class="stats-card text-decoration-none text-reset" [routerLink]="['/admin/messages']">
+    <a class="stats-card text-decoration-none text-reset anim-hover-lift" [routerLink]="['/admin/messages']">
       <h5>الرسائل</h5>
       <p>مشاهدة / تحديث حالة / حذف</p>
     </a>
-    <a class="stats-card text-decoration-none text-reset" [routerLink]="['/admin/profile']">
+    <a class="stats-card text-decoration-none text-reset anim-hover-lift" [routerLink]="['/admin/profile']">
       <h5>الملف الشخصي</h5>
       <p>إنشاء / تعديل</p>
     </a>

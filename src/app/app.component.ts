@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.scss'
 })
 export class AppComponent  implements OnInit{
-  title = 'Hossam Mostafa | Portfolio';
+  title = 'حسام مصطفى | البورتفوليو';
   loading$ : Observable<boolean>;
   currentTheme: string = '';
   constructor(private loadingService: LoadingService, private renderer: Renderer2) {

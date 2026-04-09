@@ -1,8 +1,8 @@
-<section class="container admin-page">
+<section class="container admin-page page-enter">
   <h1>إدارة المهارات</h1>
   <div class="row g-4">
     <div class="col-lg-4">
-      <div class="admin-card">
+      <div class="admin-card anim-hover-lift">
         <h4>{{ selectedId ? 'تعديل مهارة' : 'إضافة مهارة' }}</h4>
         <form [formGroup]="form" (ngSubmit)="save()">
           <input class="form-control mb-2" formControlName="name" placeholder="اسم المهارة" />
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col-lg-8">
-      <div class="admin-card">
+      <div class="admin-card anim-hover-lift">
         <table class="table table-dark table-striped align-middle">
           <thead>
             <tr>

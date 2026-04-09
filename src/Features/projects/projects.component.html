@@ -1,11 +1,11 @@
-<section class="container projects-page">
-  <div class="projects-shell">
+<section class="container projects-page page-enter">
+  <div class="projects-shell anim-hover-lift">
     <div class="projects-header">
       <h1>المشاريع</h1>
       <p>مجموعة من أهم الأعمال المنفذة بتقنيات حديثة.</p>
     </div>
 
-    <ul class="projects-list">
+    <ul class="projects-list stagger-children">
       @if(projects.length === 0) {
         <li class="empty-state text-center">
           <p class="text-muted">لا توجد مشاريع لعرضها</p>
@@ -23,7 +23,7 @@
             <div class="project-row-body">
               <div class="project-row-head">
                 <h4>{{ project.title }}</h4>
-                <span class="badge rounded-pill text-bg-primary" *ngIf="project.isFeatured">Featured</span>
+                <span class="badge rounded-pill text-bg-primary" *ngIf="project.isFeatured">مميّز</span>
               </div>
               <p>{{ project.description }}</p>
             </div>

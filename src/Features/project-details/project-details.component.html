@@ -1,14 +1,14 @@
-<section class="container details-page">
-  <div class="details-shell">
+<section class="container details-page page-enter">
+  <div class="details-shell anim-hover-lift">
     <div class="details-image">
-      <img [src]="project?.imageUrl || ''" alt="project image" class="img-fluid">
+      <img [src]="project?.imageUrl || ''" alt="صورة المشروع" class="img-fluid anim-fade-in">
     </div>
     <div class="details-content">
       <h1>{{ project?.title }}</h1>
       <p>{{ project?.description }}</p>
       <div class="d-flex flex-wrap gap-2">
         <a class="btn btn-primary" [href]="project?.demoUrl || '#'" target="_blank" role="button"><i class="bi bi-broadcast"></i> رابط العرض</a>
-        <a class="btn btn-outline-light" [href]="project?.gitHubUrl || '#'" target="_blank" role="button"><i class="bi bi-github"></i> GitHub</a>
+        <a class="btn btn-outline-light" [href]="project?.gitHubUrl || '#'" target="_blank" role="button"><i class="bi bi-github"></i> جيت هب</a>
       </div>
     </div>
   </div>

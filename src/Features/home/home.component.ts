@@ -71,11 +71,11 @@ export class HomeComponent implements OnInit {
   }
 
   getSkillLabel(level: number): string {
-    if (level >= 5) return 'Expert';
-    if (level >= 4) return 'Advanced';
-    if (level >= 3) return 'Intermediate';
-    if (level >= 2) return 'Beginner+';
-    return 'Beginner';
+    if (level >= 5) return 'خبير';
+    if (level >= 4) return 'متقدم';
+    if (level >= 3) return 'متوسط';
+    if (level >= 2) return 'فوق المبتدئ';
+    return 'مبتدئ';
   }
 
   /** رابط تحميل السيرة: من الـ API أو الملف الافتراضي في assets */

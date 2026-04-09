@@ -54,4 +54,19 @@ export class AdminMessagesComponent implements OnInit {
       }
     });
   }
+
+  messageStatusLabel(message: IMessage): string {
+    const raw = message.status?.trim();
+    if (raw) {
+      const lower = raw.toLowerCase();
+      if (lower === 'read') {
+        return 'مقروءة';
+      }
+      if (lower === 'new' || lower === 'unread') {
+        return 'جديدة';
+      }
+      return raw;
+    }
+    return message.isRead ? 'مقروءة' : 'جديدة';
+  }
 }

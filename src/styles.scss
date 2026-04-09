@@ -31,7 +31,7 @@ body[data-bs-theme='light'] {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--page-text);
   background: var(--page-bg);
   transition: background 0.25s ease, color 0.25s ease;
@@ -43,4 +43,87 @@ a {
 
 .section {
   min-height: calc(100vh - 360px);
+}
+
+/* ——— Animations ——— */
+@keyframes pageFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.page-enter {
+  animation: pageFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nav-enter {
+  animation: navSlideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stagger-children > * {
+  animation: pageFadeUp 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@for $i from 1 through 14 {
+  .stagger-children > *:nth-child(#{$i}) {
+    animation-delay: #{0.05 + ($i - 1) * 0.06}s;
+  }
+}
+
+.anim-hover-lift {
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.anim-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--soft-shadow);
+}
+
+.anim-fade-in {
+  animation: fadeIn 0.45s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .nav-enter,
+  .stagger-children > *,
+  .anim-fade-in {
+    animation: none !important;
+  }
+
+  .anim-hover-lift {
+    transition: none !important;
+  }
+
+  .anim-hover-lift:hover {
+    transform: none;
+  }
 }

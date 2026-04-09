@@ -1,6 +1,6 @@
-<section class="container admin-page">
+<section class="container admin-page page-enter">
   <h1>إدارة الملف الشخصي</h1>
-  <div class="admin-card">
+  <div class="admin-card anim-hover-lift">
     <form [formGroup]="form" (ngSubmit)="save()">
       <div class="row g-3">
         <div class="col-md-6">
@@ -13,10 +13,10 @@
           <input class="form-control" formControlName="email" placeholder="البريد الإلكتروني" />
         </div>
         <div class="col-md-6">
-          <input class="form-control" formControlName="linkedInUrl" placeholder="LinkedIn URL" />
+          <input class="form-control" formControlName="linkedInUrl" placeholder="رابط لينكد إن" />
         </div>
         <div class="col-md-6">
-          <input class="form-control" formControlName="gitHubUrl" placeholder="GitHub URL" />
+          <input class="form-control" formControlName="gitHubUrl" placeholder="رابط جيت هب" />
         </div>
         <div class="col-md-6">
           <label class="form-label small text-muted mb-1">صورة الملف الشخصي</label>
