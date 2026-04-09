@@ -6,10 +6,12 @@
       <h2>{{ profile?.title }}</h2>
       <p>{{ profile?.bio }}</p>
       <div class="d-flex gap-3 flex-wrap">
-        <a class="btn btn-primary" [href]="resumeDownloadHref" download target="_blank" role="button">
-          <i class="bi bi-file-earmark-arrow-down"></i>
-          تحميل السيرة الذاتية
-        </a>
+        @if (resumeDownloadHref) {
+          <a class="btn btn-primary" [href]="resumeDownloadHref" download target="_blank" rel="noopener" role="button">
+            <i class="bi bi-file-earmark-arrow-down"></i>
+            تحميل السيرة الذاتية
+          </a>
+        }
         <a class="btn btn-outline-light" [href]="profile?.gitHubUrl || '#'" target="_blank" role="button">
           <i class="bi bi-github"></i>
           جيت هب

@@ -78,12 +78,8 @@ export class HomeComponent implements OnInit {
     return 'مبتدئ';
   }
 
-  /** رابط تحميل السيرة: من الـ API أو الملف الافتراضي في assets */
-  get resumeDownloadHref(): string {
-    const fromApi = resolveApiMediaUrl(this.profile?.resumeUrl);
-    if (fromApi) {
-      return fromApi;
-    }
-    return 'assets/docs/HossamMostafaIbrahim-Resume.pdf';
+  /** رابط تحميل السيرة من الـ API فقط (لا يوجد ملف static) */
+  get resumeDownloadHref(): string | null {
+    return resolveApiMediaUrl(this.profile?.resumeUrl);
   }
 }

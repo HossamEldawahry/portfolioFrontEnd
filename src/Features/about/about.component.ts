@@ -14,8 +14,8 @@ export class AboutComponent implements OnInit {
 profile: IProfile | undefined;
   constructor(private _profileService: ProfileServiceService) {}
 
-  get resumeHref(): string {
-    return resolveApiMediaUrl(this.profile?.resumeUrl) ?? 'assets/docs/HossamMostafaIbrahim-Resume.pdf';
+  get resumeHref(): string | null {
+    return resolveApiMediaUrl(this.profile?.resumeUrl);
   }
   ngOnInit(): void {
     this._profileService.getProfile().subscribe({
