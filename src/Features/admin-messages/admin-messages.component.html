@@ -1,0 +1,46 @@
+<section class="container admin-page">
+  <h1>إدارة الرسائل</h1>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="admin-card">
+        <table class="table table-dark table-striped align-middle">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>الموضوع</th>
+              <th>الحالة</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (message of messages; track message.id) {
+              <tr>
+                <td>{{ message.name }}</td>
+                <td>{{ message.subject }}</td>
+                <td>{{ message.status || (message.isRead ? 'Read' : 'New') }}</td>
+                <td class="d-flex gap-2">
+                  <button class="btn btn-sm btn-outline-info" (click)="viewMessage(message.id)">عرض</button>
+                  <button class="btn btn-sm btn-outline-success" (click)="markAsRead(message)">Read</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteMessage(message.id)">حذف</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="admin-card">
+        <h4>تفاصيل الرسالة</h4>
+        @if (selectedMessage) {
+          <p><strong>الاسم:</strong> {{ selectedMessage.name }}</p>
+          <p><strong>البريد:</strong> {{ selectedMessage.email }}</p>
+          <p><strong>الموضوع:</strong> {{ selectedMessage.subject }}</p>
+          <p><strong>المحتوى:</strong> {{ selectedMessage.content }}</p>
+        } @else {
+          <p class="text-muted">اختر رسالة من الجدول لعرض التفاصيل.</p>
+        }
+      </div>
+    </div>
+  </div>
+</section>

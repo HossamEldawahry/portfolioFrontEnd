@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../Core/Services/auth/auth.service';
 import { StatsService } from '../../Core/Services/stats/stats.service';
 import { IPortfolioStats } from '../../Core/Models/portfolio-stats';
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss'
 })

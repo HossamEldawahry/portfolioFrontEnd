@@ -15,6 +15,18 @@ export class SkillsServicesService {
   getSkills(): Observable<ISkills[]> {
     return this._httpClient.get<ISkills[]>(this.skillsUrl);
   }
+
+  createSkill(payload: Pick<ISkills, 'name' | 'level'>): Observable<ISkills> {
+    return this._httpClient.post<ISkills>(this.skillsUrl, payload);
+  }
+
+  updateSkill(id: number, payload: Pick<ISkills, 'name' | 'level'>): Observable<void> {
+    return this._httpClient.put<void>(`${this.skillsUrl}/${id}`, payload);
+  }
+
+  deleteSkill(id: number): Observable<void> {
+    return this._httpClient.delete<void>(`${this.skillsUrl}/${id}`);
+  }
 }
 
 

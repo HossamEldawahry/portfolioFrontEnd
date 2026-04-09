@@ -5,6 +5,8 @@ export interface IMessage {
   subject: string;
   content: string;
   createdAt: string;
+  status?: string;
+  isRead?: boolean;
 }
 
 export interface ICreateMessageRequest {

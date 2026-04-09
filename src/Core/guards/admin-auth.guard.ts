@@ -1,5 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { catchError, map, of } from 'rxjs';
 import { AuthService } from '../Services/auth/auth.service';
 
 export const adminAuthGuard: CanActivateFn = () => {
@@ -10,5 +11,8 @@ export const adminAuthGuard: CanActivateFn = () => {
     return true;
   }
 
-  return router.createUrlTree(['/admin/login']);
+  return authService.tryRestoreSession().pipe(
+    map((restored) => restored ? true : router.createUrlTree(['/admin/login'])),
+    catchError(() => of(router.createUrlTree(['/admin/login'])))
+  );
 };

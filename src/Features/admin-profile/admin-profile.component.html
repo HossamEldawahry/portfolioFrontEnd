@@ -1,0 +1,31 @@
+<section class="container admin-page">
+  <h1>إدارة الملف الشخصي</h1>
+  <div class="admin-card">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input class="form-control" formControlName="name" placeholder="الاسم" />
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" formControlName="title" placeholder="المسمى الوظيفي" />
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" formControlName="email" placeholder="البريد الإلكتروني" />
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" formControlName="linkedInUrl" placeholder="LinkedIn URL" />
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" formControlName="gitHubUrl" placeholder="GitHub URL" />
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="file" (change)="onImageSelected($event)" />
+        </div>
+        <div class="col-12">
+          <textarea class="form-control" rows="5" formControlName="bio" placeholder="نبذة تعريفية"></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-3" type="submit">حفظ</button>
+    </form>
+  </div>
+</section>

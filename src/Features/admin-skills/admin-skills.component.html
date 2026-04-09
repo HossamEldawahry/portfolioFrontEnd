@@ -1,0 +1,43 @@
+<section class="container admin-page">
+  <h1>إدارة المهارات</h1>
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="admin-card">
+        <h4>{{ selectedId ? 'تعديل مهارة' : 'إضافة مهارة' }}</h4>
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <input class="form-control mb-2" formControlName="name" placeholder="اسم المهارة" />
+          <input class="form-control mb-3" type="number" min="0" max="5" formControlName="level" placeholder="المستوى" />
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary" type="submit">{{ selectedId ? 'حفظ التعديل' : 'إضافة' }}</button>
+            <button class="btn btn-outline-secondary" type="button" (click)="resetForm()">إعادة تعيين</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="admin-card">
+        <table class="table table-dark table-striped align-middle">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>المستوى</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (skill of skills; track skill.id) {
+              <tr>
+                <td>{{ skill.name }}</td>
+                <td>{{ skill.level }}/5</td>
+                <td class="d-flex gap-2">
+                  <button class="btn btn-sm btn-outline-warning" (click)="edit(skill)">تعديل</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteSkill(skill.id)">حذف</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

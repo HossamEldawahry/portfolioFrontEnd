@@ -3,7 +3,8 @@
   width: 100%;
   padding: 1.8rem 1rem;
   border-top: 1px solid var(--surface-border);
-  background: rgba(13, 20, 40, 0.8);
+  background: var(--footer-bg);
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .social_icon,
@@ -23,12 +24,12 @@
 
 .social_icon li a {
   font-size: 1.25rem;
-  color: #d8dcff;
+  color: var(--page-text);
   transition: 0.25s;
 }
 
 .social_icon li a:hover {
-  color: #fff;
+  opacity: 0.82;
 }
 
 .menu li a {
@@ -37,7 +38,7 @@
 }
 
 .menu li a:hover {
-  color: #fff;
+  color: var(--page-text);
 }
 
 .footer_text p {

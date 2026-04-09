@@ -3,6 +3,25 @@
   --surface-elevated: rgba(18, 28, 53, 0.65);
   --soft-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
   --muted-text: #afbbd8;
+  --page-text: #eef2ff;
+  --page-link: #9fb0ff;
+  --page-bg: radial-gradient(circle at 10% 10%, #273562 0%, #090d1a 45%, #070b14 100%);
+  --nav-bg: rgba(12, 18, 36, 0.7);
+  --footer-bg: rgba(13, 20, 40, 0.8);
+  --hover-surface: rgba(104, 118, 255, 0.2);
+}
+
+body[data-bs-theme='light'] {
+  --surface-border: rgba(43, 61, 112, 0.15);
+  --surface-elevated: rgba(255, 255, 255, 0.82);
+  --soft-shadow: 0 10px 24px rgba(31, 46, 89, 0.12);
+  --muted-text: #4b5d84;
+  --page-text: #16233f;
+  --page-link: #3556c9;
+  --page-bg: radial-gradient(circle at 10% 10%, #f3f7ff 0%, #e8eefc 45%, #dde6fb 100%);
+  --nav-bg: rgba(255, 255, 255, 0.86);
+  --footer-bg: rgba(244, 247, 255, 0.95);
+  --hover-surface: rgba(71, 102, 207, 0.14);
 }
 
 * {
@@ -13,12 +32,13 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #eef2ff;
-  background: radial-gradient(circle at 10% 10%, #273562 0%, #090d1a 45%, #070b14 100%);
+  color: var(--page-text);
+  background: var(--page-bg);
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 a {
-  color: #9fb0ff;
+  color: var(--page-link);
 }
 
 .section {

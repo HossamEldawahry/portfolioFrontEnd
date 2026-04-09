@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { IAuthResponse, ILoginRequest } from '../../Models/auth';
 import { apiV1BaseUrl } from '../../server/baseUrl';
 
@@ -34,6 +34,11 @@ export class AuthService {
 
   logout(): Observable<void> {
     const refreshToken = localStorage.getItem(this.refreshTokenKey);
+    if (!refreshToken) {
+      this.clearSession();
+      return of(void 0);
+    }
+
     return this.httpClient.post<void>(`${this.authUrl}/logout`, { refreshToken }).pipe(
       tap(() => this.clearSession())
     );
@@ -49,6 +54,28 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.getAccessToken();
+  }
+
+  hasRefreshToken(): boolean {
+    return !!localStorage.getItem(this.refreshTokenKey);
+  }
+
+  tryRestoreSession(): Observable<boolean> {
+    if (this.isAuthenticated()) {
+      return of(true);
+    }
+
+    if (!this.hasRefreshToken()) {
+      return of(false);
+    }
+
+    return this.refreshToken().pipe(
+      map(() => true),
+      catchError(() => {
+        this.clearSession();
+        return of(false);
+      })
+    );
   }
 
   getAccessTokenChanges(): Observable<string | null> {

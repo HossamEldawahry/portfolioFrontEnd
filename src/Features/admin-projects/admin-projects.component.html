@@ -1,0 +1,53 @@
+<section class="container admin-page">
+  <h1>إدارة المشاريع</h1>
+  <div class="row g-4">
+    <div class="col-lg-5">
+      <div class="admin-card">
+        <h4>{{ selectedId ? 'تعديل مشروع' : 'إضافة مشروع' }}</h4>
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <input class="form-control mb-2" formControlName="title" placeholder="العنوان" />
+          <textarea class="form-control mb-2" rows="4" formControlName="description" placeholder="الوصف"></textarea>
+          <input class="form-control mb-2" formControlName="gitHubUrl" placeholder="GitHub URL" />
+          <input class="form-control mb-2" formControlName="demoUrl" placeholder="Demo URL" />
+          <input class="form-control mb-2" type="file" (change)="onImageSelected($event)" />
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" formControlName="isFeatured" id="featuredProject" />
+            <label class="form-check-label" for="featuredProject">Featured</label>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary" type="submit">{{ selectedId ? 'حفظ التعديل' : 'إضافة' }}</button>
+            <button class="btn btn-outline-secondary" type="button" (click)="resetForm()">إعادة تعيين</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="admin-card">
+        <h4>المشاريع الحالية</h4>
+        <div class="table-responsive">
+          <table class="table table-dark table-striped align-middle">
+            <thead>
+              <tr>
+                <th>العنوان</th>
+                <th>Featured</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (project of projects; track project.id) {
+                <tr>
+                  <td>{{ project.title }}</td>
+                  <td>{{ project.isFeatured ? 'نعم' : 'لا' }}</td>
+                  <td class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-warning" (click)="edit(project)">تعديل</button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project.id)">حذف</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

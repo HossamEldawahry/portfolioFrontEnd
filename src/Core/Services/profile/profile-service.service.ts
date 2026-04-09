@@ -15,4 +15,12 @@ export class ProfileServiceService {
   getProfile(): Observable<IProfile> {
     return this._httpClient.get<IProfile>(`${this.profileUrl}/current`);
   }
+
+  createProfile(formData: FormData): Observable<IProfile> {
+    return this._httpClient.post<IProfile>(this.profileUrl, formData);
+  }
+
+  updateProfile(id: number, formData: FormData): Observable<void> {
+    return this._httpClient.put<void>(`${this.profileUrl}/${id}`, formData);
+  }
 }

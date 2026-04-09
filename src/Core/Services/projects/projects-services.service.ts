@@ -31,4 +31,16 @@ export class ProjectsServicesService {
 
     return this._httpClient.get<IPagesResult<IProject>>(`${this.projectsUrl}/paged`, { params });
   }
+
+  createProject(formData: FormData): Observable<IProject> {
+    return this._httpClient.post<IProject>(this.projectsUrl, formData);
+  }
+
+  updateProject(id: number, formData: FormData): Observable<void> {
+    return this._httpClient.put<void>(`${this.projectsUrl}/${id}`, formData);
+  }
+
+  deleteProject(id: number): Observable<void> {
+    return this._httpClient.delete<void>(`${this.projectsUrl}/${id}`);
+  }
 }
